@@ -49,8 +49,11 @@ export const Perfil = () => {
         }
     };
 
+    const apiBaseUrl = import.meta.env.VITE_API_URL || 'https://localhost:7062';
+    const baseDomain = apiBaseUrl.replace(/\/api\/v1\/?$/, '').replace(/\/+$/, '');
+
     const urlAvatar = usuario?.imagenPerfil 
-        ? `https://localhost:7062${usuario.imagenPerfil}` 
+        ? `${baseDomain}${usuario.imagenPerfil}` 
         : null;
 
     return (
