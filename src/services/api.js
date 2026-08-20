@@ -1,8 +1,12 @@
 import axios from 'axios';
 
-// Creamos la instancia usando la URL base de tu archivo .env
+let baseURL = import.meta.env.VITE_API_URL || '';
+if (baseURL && !baseURL.endsWith('/api/v1') && !baseURL.endsWith('/api/v1/')) {
+    baseURL = baseURL.replace(/\/+$/, '') + '/api/v1';
+}
+
 const api = axios.create({
-    baseURL: import.meta.env.VITE_API_URL,
+    baseURL: baseURL,
 });
 
 // Interceptor de PETICIONES (Requests)
